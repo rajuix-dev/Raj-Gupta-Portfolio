@@ -3,141 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raj Gupta — Full Stack Developer &amp; UI/UX Designer</title>
+<title>Raj Gupta — Full Stack Developer & UI/UX Designer</title>
 <meta name="description" content="Raj Gupta — B.Tech CSE student, full-stack developer and UI/UX designer. Portfolio, projects and contact.">
-
-<!-- EmailJS Library -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Work+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="top">
 
-<!-- ══════════════════════════════
-     MASTHEAD
-══════════════════════════════ -->
-<header class="masthead" id="navbar">
-  <a href="#top" class="masthead-mark">Raj Gupta</a>
-
-  <nav class="masthead-nav">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Work</a>
-    <a href="#miniprojects">Mini Projects</a>
-    <a href="#experience">Journey</a>
-    <a href="#contact">Contact</a>
+<header class="nav">
+  <nav class="nav-in" aria-label="Main">
+    <a class="brand" href="#top">Raj Gupta</a>
+    <ul class="links" id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#miniprojects">Mini Projects</a></li>
+      <li><a href="#experience">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="open"><i></i>Open to work</span>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </nav>
-
-  <div class="masthead-status">
-    <span class="status-dot"></span>Open to work
-  </div>
-
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </header>
 
-<!-- ── MOBILE MENU ── -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#skills" onclick="closeMobile()">Skills</a>
-  <a href="#projects" onclick="closeMobile()">Work</a>
-  <a href="#miniprojects" onclick="closeMobile()">Mini Projects</a>
-  <a href="#experience" onclick="closeMobile()">Journey</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
-</div>
-
-<main id="top">
-
-<!-- ══════════════════════════════
-     HERO
-══════════════════════════════ -->
+<main>
+<!-- HERO -->
 <section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-main">
-      <h1 class="hero-name">Raj Gupta</h1>
-      <p class="hero-role">A full-stack developer and UI/UX designer studying Computer Science, building responsive, user-focused web applications from interface to database.</p>
-      <p class="hero-desc">Currently a B.Tech Computer Science Engineering student, working across React, Node.js and MongoDB, with a parallel interest in clean, usable interface design.</p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-ink">See the work</a>
-        <a href="#contact" class="btn-line">Get in touch</a>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1><span>Raj</span><span>Gupta</span></h1>
+        <p class="lead">A full-stack developer and UI/UX designer studying Computer Science, building responsive, user-focused web applications from interface to database.</p>
+        <p class="sub">Currently a B.Tech Computer Science Engineering student, working across React, Node.js and MongoDB, with a parallel interest in clean, usable interface design.</p>
+        <div class="cta">
+          <a class="btn btn-solid" href="#projects">See the work</a>
+          <a class="btn btn-line" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="stage" aria-hidden="false">
+        <div class="sticker s2" aria-hidden="true"></div>
+        <div class="frame-photo">
+          <span class="h a"></span><span class="h b"></span><span class="h c"></span><span class="h d"></span>
+          <div class="ph">
+            <div class="fallback" aria-hidden="true">RG</div>
+            <img src="raj.jpeg" alt="Portrait of Raj Gupta" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="code">
+          <div class="code-bar" aria-hidden="true"><b></b><b></b><b></b></div>
+<pre><span class="k">const</span> <span class="n">developer</span> = {
+  name: <span class="s">"Raj Gupta"</span>,
+  degree: <span class="s">"B.Tech CSE"</span>,
+  stack: <span class="s">"Full Stack"</span>,
+  focus: [<span class="s">"Web"</span>, <span class="s">"UI/UX"</span>],
+  learning: <span class="c">true</span>
+};</pre>
+        </div>
+        <div class="cursor one" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 2l17 8-7.5 2L9.5 20z" fill="#6A4DFF" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Raj Gupta</span>
+        </div>
+        <div class="cursor two" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 2l17 8-7.5 2L9.5 20z" fill="#FF6A5C" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span>UI/UX</span>
+        </div>
+        <div class="sticker s1" aria-hidden="true"></div>
       </div>
     </div>
 
-    <aside class="hero-aside">
-      <div class="code-window">
-        <div class="code-window-bar">
-          <span></span><span></span><span></span>
-        </div>
-        <div class="code-window-body">
-          <div class="code-line"><span class="ck">const</span> <span class="cv">developer</span> = {</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">name</span>: <span class="cs">"Raj Gupta"</span>,</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">degree</span>: <span class="cs">"B.Tech CSE"</span>,</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">stack</span>: <span class="cs">"Full Stack"</span>,</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">focus</span>: [<span class="cs">"Web"</span>, <span class="cs">"UI/UX"</span>],</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">learning</span>: <span class="cn">true</span></div>
-          <div class="code-line">};</div>
-        </div>
-      </div>
+    <ul class="stack" style="list-style:none">
+      <li class="chip" style="--c:#61DAFB">React.js</li>
+      <li class="chip" style="--c:#3C873A">Node.js</li>
+      <li class="chip" style="--c:#15161C">Express.js</li>
+      <li class="chip" style="--c:#14B38A">MongoDB</li>
+      <li class="chip" style="--c:#00758F">MySQL</li>
+      <li class="chip" style="--c:#FFC53D">JavaScript</li>
+      <li class="chip" style="--c:#38BDF8">Tailwind CSS</li>
+      <li class="chip" style="--c:#FF6A5C">Figma</li>
+    </ul>
 
-      <ul class="hero-stack">
-        <li>React.js</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li>
-        <li>MySQL</li><li>JavaScript</li><li>Tailwind CSS</li><li>Figma</li>
-      </ul>
-    </aside>
+    <div class="stats">
+      <div class="stat"><b data-n="3">3</b><span>Major projects</span></div>
+      <div class="stat"><b data-n="13">13</b><span>Mini projects</span></div>
+      <div class="stat"><b data-n="4">4</b><span>Languages</span></div>
+      <div class="stat"><b data-n="5">5</b><span>Frontend skills</span></div>
+      <div class="stat"><b data-n="3">3</b><span>Backend skills</span></div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     STAT STRIP
-══════════════════════════════ -->
-<div class="stat-strip">
-  <div class="container stat-strip-inner">
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Major projects</span></div>
-    <div class="stat"><span class="stat-num">13</span><span class="stat-label">Mini projects</span></div>
-    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Languages</span></div>
-    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Frontend skills</span></div>
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Backend skills</span></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     ABOUT
-══════════════════════════════ -->
-<section id="about">
-  <div class="container about-grid">
-
-    <div class="about-photo">
-      <div class="photo-frame">
-        <img src="raj.jpeg" alt="Portrait of Raj Gupta">
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about">
+      <div>
+        <h3>Full-stack developer &amp; UI/UX designer</h3>
+        <p>I'm a B.Tech Computer Science Engineering student (2024–2028) with hands-on experience in full-stack web development and UI/UX design. I enjoy building responsive, user-focused applications with modern frontend and backend technologies.</p>
+        <p>My experience spans React.js, Node.js, Express.js and MongoDB, along with REST APIs, authentication, database integration, responsive design and UI/UX workflows in Figma.</p>
+        <p>I care about practical solutions — clean interfaces, strong usability and reliable backend integration, rather than complexity for its own sake.</p>
       </div>
-    </div>
-
-    <div class="about-text">
-      <div class="section-head">
-        <h2>About</h2>
-        <div class="rule"></div>
-      </div>
-
-      <h3>Full-stack developer &amp; UI/UX designer</h3>
-      <p>
-        I'm a B.Tech Computer Science Engineering student (2024–2028) with hands-on experience
-        in full-stack web development and UI/UX design. I enjoy building responsive, user-focused
-        applications with modern frontend and backend technologies.
-      </p>
-      <p>
-        My experience spans React.js, Node.js, Express.js and MongoDB, along with REST APIs,
-        authentication, database integration, responsive design and UI/UX workflows in Figma.
-      </p>
-      <p>
-        I care about practical solutions — clean interfaces, strong usability and reliable
-        backend integration, rather than complexity for its own sake.
-      </p>
-
-      <ul class="qualities">
+      <ul class="traits">
         <li>Problem solving</li>
         <li>Attention to detail</li>
         <li>Team collaboration</li>
@@ -146,273 +115,183 @@
         <li>Communication</li>
       </ul>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     SKILLS
-══════════════════════════════ -->
-<section id="skills" class="section-tinted">
-  <div class="container">
-    <div class="section-head">
-      <h2>Skills</h2>
-      <div class="rule"></div>
-    </div>
-
-    <div class="skills-columns">
-
-      <div class="skill-group">
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head"><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card">
         <h4>Languages</h4>
-        <ul class="skill-list">
-          <li><span>C</span><span class="tier">Proficient</span></li>
-          <li><span>C++</span><span class="tier">Proficient</span></li>
-          <li><span>Python</span><span class="tier">Proficient</span></li>
-          <li><span>JavaScript</span><span class="tier">Advanced</span></li>
+        <ul>
+          <li><span>C</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>C++</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Python</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>JavaScript</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
         </ul>
       </div>
-
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Frontend</h4>
-        <ul class="skill-list">
-          <li><span>HTML5</span><span class="tier">Advanced</span></li>
-          <li><span>CSS3</span><span class="tier">Advanced</span></li>
-          <li><span>React.js</span><span class="tier">Advanced</span></li>
-          <li><span>Bootstrap</span><span class="tier">Proficient</span></li>
-          <li><span>Tailwind CSS</span><span class="tier">Proficient</span></li>
+        <ul>
+          <li><span>HTML5</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>CSS3</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>React.js</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>Bootstrap</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Tailwind CSS</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
         </ul>
       </div>
-
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Backend &amp; data</h4>
-        <ul class="skill-list">
-          <li><span>Node.js</span><span class="tier">Proficient</span></li>
-          <li><span>Express.js</span><span class="tier">Proficient</span></li>
-          <li><span>MongoDB</span><span class="tier">Proficient</span></li>
-          <li><span>MySQL</span><span class="tier">Familiar</span></li>
+        <ul>
+          <li><span>Node.js</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Express.js</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>MongoDB</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>MySQL</span><span class="lvl">Familiar</span><span class="meter" data-l="2"></span></li>
         </ul>
       </div>
-
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Tools</h4>
-        <ul class="skill-list">
-          <li><span>Git &amp; GitHub</span><span class="tier">Proficient</span></li>
-          <li><span>Postman</span><span class="tier">Proficient</span></li>
-          <li><span>Figma</span><span class="tier">Advanced</span></li>
-          <li><span>Canva</span><span class="tier">Proficient</span></li>
+        <ul>
+          <li><span>Git &amp; GitHub</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Postman</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Figma</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>Canva</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     PROJECTS / WORK
-══════════════════════════════ -->
-<section id="projects">
-  <div class="container">
-    <div class="section-head">
-      <h2>Major projects</h2>
-      <div class="rule"></div>
-    </div>
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec-head"><h2>Major projects</h2></div>
 
-    <div class="project-list">
-
-      <article class="project-row featured">
-        <div class="project-meta">Featured · Full-stack application</div>
-        <div class="project-body">
-          <h3>Wanderlust</h3>
-          <p>A full-stack web application with authentication, property listings, and reviews and ratings, plus search, filtering and maps.</p>
-          <ul class="tag-list">
-            <li>React.js</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li><li>Authentication</li><li>Maps</li>
-          </ul>
+    <article class="proj-featured">
+      <div class="pf-text">
+        <span class="tag">Featured · Full-stack application</span>
+        <h3>Wanderlust</h3>
+        <p>A full-stack web application with authentication, property listings, and reviews and ratings, plus search, filtering and maps.</p>
+        <ul class="tags">
+          <li>React.js</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li><li>Authentication</li><li>Maps</li>
+        </ul>
+      </div>
+      <div class="pf-art">
+        <div class="browser">
+          <div class="bar" aria-hidden="true"><b></b><b></b><b></b><em></em></div>
+          <img src="wanderlust.png" alt="Wanderlust home page with category filters and property listings such as Cozy Beachfront Cottage, Mountain Retreat and Historic Villa in Tuscany" loading="lazy">
         </div>
+      </div>
+    </article>
+
+    <div class="proj-row">
+      <article class="proj">
+        <span class="kicker">Personal project</span>
+        <h3>Personal portfolio website</h3>
+        <p>A responsive portfolio site designed and developed from scratch to present projects, skills and professional background.</p>
+        <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Figma</li></ul>
       </article>
-
-      <article class="project-row">
-        <div class="project-meta">Personal project</div>
-        <div class="project-body">
-          <h3>Personal portfolio website</h3>
-          <p>A responsive portfolio site designed and developed from scratch to present projects, skills and professional background.</p>
-          <ul class="tag-list">
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Figma</li>
-          </ul>
-        </div>
+      <article class="proj">
+        <span class="kicker">E-commerce practice project</span>
+        <h3>Amazon Clone</h3>
+        <p>A frontend e-commerce web application inspired by Amazon, featuring product listings, search, navigation, and a responsive shopping interface.</p>
+        <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li></ul>
       </article>
-
-      <article class="project-row">
-        <div class="project-meta">E-commerce practice project</div>
-        <div class="project-body">
-          <h3>Amazon Clone</h3>
-          <p>A frontend e-commerce web application inspired by Amazon, featuring product listings, search, navigation, and a responsive shopping interface.</p>
-          <ul class="tag-list">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li>
-          </ul>
-        </div>
-      </article>
-
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     MINI PROJECTS
-══════════════════════════════ -->
-<section id="miniprojects" class="section-tinted">
-  <div class="container">
-    <div class="section-head">
-      <h2>Mini projects</h2>
-      <div class="rule"></div>
-    </div>
+<!-- MINI PROJECTS -->
+<section class="sec" id="miniprojects">
+  <div class="wrap">
+    <div class="sec-head"><h2>Mini projects</h2></div>
+    <ul class="mini">
+      <li>Rock Paper Scissors</li><li>Currency Converter</li><li>Cat Facts Generator</li><li>Todo App</li>
+      <li>Weather App</li><li>Quiz App</li><li>Password Generator</li><li>Digital Clock</li>
+      <li>Stopwatch</li><li>Image Slider</li><li>Expense Tracker</li><li>Calculator</li><li>GitHub Profile Finder</li>
+    </ul>
+  </div>
+</section>
 
-    <div class="miniproj-grid">
-      <div class="miniproj">Rock Paper Scissors</div>
-      <div class="miniproj">Currency Converter</div>
-      <div class="miniproj">Cat Facts Generator</div>
-      <div class="miniproj">Todo App</div>
-      <div class="miniproj">Weather App</div>
-      <div class="miniproj">Quiz App</div>
-      <div class="miniproj">Password Generator</div>
-      <div class="miniproj">Digital Clock</div>
-      <div class="miniproj">Stopwatch</div>
-      <div class="miniproj">Image Slider</div>
-      <div class="miniproj">Expense Tracker</div>
-      <div class="miniproj">Calculator</div>
-      <div class="miniproj">GitHub Profile Finder</div>
+<!-- JOURNEY -->
+<section class="sec" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><h2>Journey</h2></div>
+    <ol class="timeline">
+      <li class="tl">
+        <span class="when">2024–2028</span>
+        <h3>B.Tech, Computer Science Engineering</h3>
+        <p>Pursuing a Bachelor of Technology in Computer Science Engineering at Ganga Institute of Technology and Management, Jhajjar.</p>
+      </li>
+      <li class="tl">
+        <span class="when">Design</span>
+        <h3>UI/UX design in Figma</h3>
+        <p>Designed responsive interfaces with a focus on usability, clean layouts and user-centered design.</p>
+      </li>
+      <li class="tl">
+        <span class="when">Project</span>
+        <h3>Wanderlust</h3>
+        <p>Built a full-stack application with authentication, listings, reviews and ratings, plus search, filtering and maps.</p>
+      </li>
+      <li class="tl">
+        <span class="when">Now</span>
+        <h3>Full-stack web development</h3>
+        <p>Building responsive, user-focused applications with React.js, Node.js and MongoDB — including REST APIs, authentication and database integration.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="sec" id="capabilities">
+  <div class="wrap">
+    <div class="sec-head"><h2>Capabilities</h2></div>
+    <div class="caps">
+      <div class="cap"><h4>Full-stack development</h4><p>Hands-on experience building responsive, user-focused full-stack applications.</p></div>
+      <div class="cap"><h4>API integration</h4><p>Experience with REST APIs, authentication and backend integration.</p></div>
+      <div class="cap"><h4>Database design</h4><p>Working experience with MongoDB and MySQL for application data.</p></div>
+      <div class="cap"><h4>Interface design</h4><p>A strong eye for responsive layouts, usability and clean interfaces.</p></div>
+      <div class="cap"><h4>Version control</h4><p>Git and GitHub, supporting modern collaborative development workflows.</p></div>
+      <div class="cap"><h4>Problem solving</h4><p>Practical solutions, built with creativity, adaptability and continuous learning.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     JOURNEY
-══════════════════════════════ -->
-<section id="experience">
-  <div class="container">
-    <div class="section-head">
-      <h2>Journey</h2>
-      <div class="rule"></div>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-row">
-        <div class="timeline-when">2024–2028</div>
-        <div class="timeline-what">
-          <h3>B.Tech, Computer Science Engineering</h3>
-          <p>Pursuing a Bachelor of Technology in Computer Science Engineering at Ganga Institute of Technology and Management, Jhajjar.</p>
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head"><h2>Contact</h2></div>
+    <div class="contact">
+      <div class="c-left">
+        <h3>Have a project in mind?</h3>
+        <p>I'm open to opportunities, collaborations and projects in full-stack development, frontend engineering and UI/UX design. Send a note — I read every one.</p>
+        <a class="mail" href="mailto:raj.uixwebdev@gmail.com">raj.uixwebdev@gmail.com</a>
+        <div class="c-links">
+          <a class="btn" href="https://www.linkedin.com/in/raj-gupta-40a896348/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn fill" href="Raj_Gupta_Resume.docx">Download resume</a>
         </div>
       </div>
-
-      <div class="timeline-row">
-        <div class="timeline-when">Design</div>
-        <div class="timeline-what">
-          <h3>UI/UX design in Figma</h3>
-          <p>Designed responsive interfaces with a focus on usability, clean layouts and user-centered design.</p>
-        </div>
-      </div>
-
-      <div class="timeline-row">
-        <div class="timeline-when">Project</div>
-        <div class="timeline-what">
-          <h3>Wanderlust</h3>
-          <p>Built a full-stack application with authentication, listings, reviews and ratings, plus search, filtering and maps.</p>
-        </div>
-      </div>
-
-      <div class="timeline-row">
-        <div class="timeline-when">Now</div>
-        <div class="timeline-what">
-          <h3>Full-stack web development</h3>
-          <p>Building responsive, user-focused applications with React.js, Node.js and MongoDB — including REST APIs, authentication and database integration.</p>
-        </div>
-      </div>
-
+      <form id="form">
+        <label>Your name<input name="name" type="text" required autocomplete="name"></label>
+        <label>Email address<input name="email" type="email" required autocomplete="email"></label>
+        <label>Subject<input name="subject" type="text" required></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <button class="btn" type="submit" id="send">Send message</button>
+      </form>
     </div>
   </div>
 </section>
-
-<!-- ══════════════════════════════
-     CAPABILITIES
-══════════════════════════════ -->
-<section id="achievements" class="section-tinted">
-  <div class="container">
-    <div class="section-head">
-      <h2>Capabilities</h2>
-      <div class="rule"></div>
-    </div>
-
-    <div class="capability-grid">
-      <div class="capability"><h4>Full-stack development</h4><p>Hands-on experience building responsive, user-focused full-stack applications.</p></div>
-      <div class="capability"><h4>API integration</h4><p>Experience with REST APIs, authentication and backend integration.</p></div>
-      <div class="capability"><h4>Database design</h4><p>Working experience with MongoDB and MySQL for application data.</p></div>
-      <div class="capability"><h4>Interface design</h4><p>A strong eye for responsive layouts, usability and clean interfaces.</p></div>
-      <div class="capability"><h4>Version control</h4><p>Git and GitHub, supporting modern collaborative development workflows.</p></div>
-      <div class="capability"><h4>Problem solving</h4><p>Practical solutions, built with creativity, adaptability and continuous learning.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     CONTACT
-══════════════════════════════ -->
-<section id="contact">
-  <div class="container contact-grid">
-
-    <div class="contact-info">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <div class="rule"></div>
-      </div>
-      <h3>Have a project in mind?</h3>
-      <p>I'm open to opportunities, collaborations and projects in full-stack development, frontend engineering and UI/UX design. Send a note — I read every one.</p>
-      <a href="mailto:raj.uixwebdev@gmail.com" class="contact-email">raj.uixwebdev@gmail.com</a>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/raj-gupta-40a896348/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="./Raj_Gupta_Resume.docx" id="resumeBtn2" download>Download resume</a>
-      </div>
-    </div>
-
-    <form id="contactForm" class="contact-form" onsubmit="return false;">
-      <div class="form-group">
-        <label for="fromName">Your name</label>
-        <input type="text" name="from_name" id="fromName" placeholder="John Doe" required>
-      </div>
-      <div class="form-group">
-        <label for="fromEmail">Email address</label>
-        <input type="email" name="from_email" id="fromEmail" placeholder="john@example.com" required>
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" id="subject" placeholder="Project collaboration">
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" placeholder="Tell me about your project..." required></textarea>
-      </div>
-      <button type="submit" id="submitBtn" class="btn-ink btn-full">
-        <span id="btnText">Send message</span>
-        <span id="btnLoader" style="display:none;">Sending…</span>
-      </button>
-      <div id="formStatus" class="form-status"></div>
-    </form>
-
-  </div>
-</section>
-
 </main>
 
-<!-- ══════════════════════════════
-     FOOTER
-══════════════════════════════ -->
-<footer class="footer">
-  <div class="container footer-inner">
+<footer>
+  <div class="wrap foot">
     <div>
-      <div class="footer-name">Raj Gupta</div>
-      <div class="footer-sub">B.Tech CSE (2024–2028) · Full-stack developer · UI/UX designer</div>
+      <strong>Raj Gupta</strong>
+      <p>B.Tech CSE (2024–2028) · Full-stack developer · UI/UX designer</p>
     </div>
-    <div class="footer-right">Designed &amp; built by Raj Gupta · 2026</div>
+    <p>Designed &amp; built by Raj Gupta · 2026</p>
   </div>
 </footer>
 

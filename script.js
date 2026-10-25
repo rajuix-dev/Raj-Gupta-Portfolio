@@ -1,191 +1,68 @@
-/* ============================================
-   RAJ GUPTA PORTFOLIO — script.js
-   EmailJS Integrated for Contact Form
-   ============================================ */
-
-/* ── EMAILJS CONFIGURATION ── */
-const EMAILJS_PUBLIC_KEY = 'astmiG8XvJkl1qjH3';
-const EMAILJS_SERVICE_ID = 'service_yy024al';
-const EMAILJS_TEMPLATE_ID = 'template_p6dohh8';
-
-(function () {
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  } else {
-    console.warn('EmailJS library not loaded');
-  }
-})();
-
-/* ── MOBILE MENU ── */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-if (hamburger) {
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-}
-function closeMobile() {
-  if (mobileMenu) mobileMenu.classList.remove('open');
-}
-
-/* ── ACTIVE NAV LINK ON SCROLL ── */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.masthead-nav a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(sec => {
-    if (scrollY >= sec.offsetTop - 160) current = sec.getAttribute('id');
+(function(){
+  // mobile menu
+  var burger=document.getElementById('burger'), links=document.getElementById('links');
+  burger.addEventListener('click',function(){
+    var s=links.classList.toggle('show'); burger.setAttribute('aria-expanded',s);
   });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green-2)' : '';
-  });
-});
+  links.addEventListener('click',function(e){ if(e.target.tagName==='A'){links.classList.remove('show');burger.setAttribute('aria-expanded','false');} });
 
-/* ── SMOOTH SCROLL ── */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href');
-    if (targetId.length < 2) return;
-    const target = document.querySelector(targetId);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      closeMobile();
+  // skill meters (4 segments)
+  document.querySelectorAll('.meter').forEach(function(m){
+    var l=+m.dataset.l;
+    for(var i=0;i<4;i++){var b=document.createElement('i'); if(i<l) b.className='f'; m.appendChild(b);}
+  });
+  var cards=document.querySelectorAll('.skill-card');
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');cio.unobserve(e.target);} });},{threshold:.35});
+  cards.forEach(function(c){cio.observe(c);});
+
+  // counters
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting) return; sio.unobserve(e.target);
+    var el=e.target, to=+el.dataset.n; if(reduce){el.textContent=to;return;}
+    var t0=performance.now();
+    (function step(t){var p=Math.min((t-t0)/900,1); el.textContent=Math.round(to*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step);})(t0);
+  });},{threshold:.6});
+  document.querySelectorAll('.stat b').forEach(function(b){sio.observe(b);});
+
+  // active nav link
+  var map={};
+  links.querySelectorAll('a').forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var nio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting && map[e.target.id]){
+      Object.keys(map).forEach(function(k){map[k].classList.remove('on');});
+      map[e.target.id].classList.add('on');
     }
-  });
-});
+  });},{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(k){var s=document.getElementById(k); if(s) nio.observe(s);});
 
-/* ═══════════════════════════════════
-   EMAILJS CONTACT FORM HANDLER
-   ═══════════════════════════════════ */
-const contactForm = document.getElementById('contactForm');
+  // contact form: sends straight to your inbox with EmailJS (no mail app opens)
+  // Fill these three in from your EmailJS dashboard
+  var EMAILJS_PUBLIC_KEY='astmiG8XvJkl1qjH3';
+  var EMAILJS_SERVICE_ID='service_yy024al';
+  var EMAILJS_TEMPLATE_ID='template_p6dohh8';
 
-if (contactForm) {
-  contactForm.addEventListener('submit', async function (e) {
+  var form=document.getElementById('form'), send=document.getElementById('send'), note=document.getElementById('form-status');
+  if(window.emailjs){ emailjs.init({publicKey:EMAILJS_PUBLIC_KEY}); }
+  function say(msg,ok){ note.textContent=msg; note.className=ok?'ok':'err'; }
+
+  form.addEventListener('submit',function(e){
     e.preventDefault();
-
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoader = document.getElementById('btnLoader');
-    const formStatus = document.getElementById('formStatus');
-
-    const fromName = document.getElementById('fromName').value.trim();
-    const fromEmail = document.getElementById('fromEmail').value.trim();
-    const subject = document.getElementById('subject').value.trim() || 'Portfolio Contact';
-    const message = document.getElementById('message').value.trim();
-
-    if (!fromName || !fromEmail || !message) {
-      showFormStatus(formStatus, 'error', 'Please fill all required fields.');
-      shakeElement(submitBtn);
-      return;
+    if(!window.emailjs || EMAILJS_PUBLIC_KEY==='YOUR_PUBLIC_KEY'){
+      say('The form is not set up yet. Please email raj.uixwebdev@gmail.com directly.',false); return;
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(fromEmail)) {
-      showFormStatus(formStatus, 'error', 'Please enter a valid email address.');
-      shakeElement(document.getElementById('fromEmail'));
-      return;
-    }
-
-    submitBtn.disabled = true;
-    if (btnText) btnText.style.display = 'none';
-    if (btnLoader) btnLoader.style.display = 'inline';
-    if (formStatus) formStatus.style.display = 'none';
-
-    const templateParams = {
-      from_name: fromName,
-      from_email: fromEmail,
-      subject: subject,
-      message: message,
-      timestamp: new Date().toLocaleString('en-IN', {
-        timeZone: 'Asia/Kolkata',
-        dateStyle: 'full',
-        timeStyle: 'long'
-      }),
-      to_email: 'raj.uixwebdev@gmail.com'
-    };
-
-    try {
-      const response = await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams
-      );
-
-      if (response.status === 200) {
-        showFormStatus(formStatus, 'success', 'Message sent — I\'ll get back to you soon.');
-        contactForm.reset();
-        if (btnText) btnText.style.display = 'inline';
-        if (btnLoader) btnLoader.style.display = 'none';
-        btnText.textContent = 'Sent';
-      }
-    } catch (error) {
-      console.error('EmailJS error:', error);
-
-      let errorMessage = 'Failed to send message. Please try again.';
-      if (error.status === 400) errorMessage = 'Invalid request — check template variables.';
-      else if (error.status === 412) errorMessage = 'Service unavailable. Try again later.';
-      else if (error.status === 403) errorMessage = 'Access denied. Check your API keys.';
-
-      showFormStatus(formStatus, 'error', errorMessage);
-      shakeElement(submitBtn);
-    } finally {
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        if (btnText) {
-          btnText.style.display = 'inline';
-          btnText.textContent = 'Send message';
-        }
-        if (btnLoader) btnLoader.style.display = 'none';
-
-        if (formStatus && formStatus.classList.contains('success')) {
-          formStatus.style.display = 'none';
-        }
-      }, 4000);
-    }
-  });
-}
-
-/* ── FORM HELPER FUNCTIONS ── */
-function showFormStatus(element, type, message) {
-  if (!element) return;
-  element.style.display = 'block';
-  element.textContent = message;
-  element.className = 'form-status';
-  element.classList.add(type);
-}
-
-function shakeElement(element) {
-  if (!element) return;
-  element.style.animation = 'none';
-  element.offsetHeight;
-  element.style.animation = 'shake 0.5s ease-in-out';
-  setTimeout(() => { element.style.animation = ''; }, 500);
-}
-
-/* ── RESUME BUTTONS ── */
-const resumeUrl = './Raj_Gupta_Resume.docx';
-
-['resumeBtn2'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) {
-    el.addEventListener('click', e => {
-      e.preventDefault();
-      const link = document.createElement('a');
-      link.href = resumeUrl;
-      link.download = 'Raj_Gupta_Resume.docx';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      const toast = document.createElement('div');
-      toast.className = 'rg-toast';
-      toast.textContent = 'Resume download started';
-      document.body.appendChild(toast);
-
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.3s';
-        setTimeout(() => document.body.removeChild(toast), 300);
-      }, 2200);
+    var d=new FormData(form);
+    send.disabled=true; send.textContent='Sending…'; say('',true);
+    emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,{
+      name:d.get('name'), email:d.get('email'), from_name:d.get('name'), from_email:d.get('email'),
+      subject:d.get('subject'), title:d.get('subject'), message:d.get('message')
+    }).then(function(){
+      form.reset(); say('Message sent. Thank you, I will reply soon.',true);
+    },function(err){
+      console.error(err);
+      say('Could not send: ' + ((err && err.text) || 'unknown error'),false);
+    }).finally(function(){
+      send.disabled=false; send.textContent='Send message';
     });
-  }
-});
+  });
+})();
