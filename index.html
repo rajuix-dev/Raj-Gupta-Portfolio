@@ -270,7 +270,7 @@
         <a class="mail" href="mailto:raj.uixwebdev@gmail.com">raj.uixwebdev@gmail.com</a>
         <div class="c-links">
           <a class="btn" href="https://www.linkedin.com/in/raj-gupta-40a896348/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn fill" href="Raj_Gupta_Resume.docx">Download resume</a>
+          <a class="btn fill" href="Raj_Gupta_Resume.pdf">Download resume</a>
         </div>
       </div>
       <form id="form">
@@ -279,6 +279,7 @@
         <label>Subject<input name="subject" type="text" required></label>
         <label>Message<textarea name="message" required></textarea></label>
         <button class="btn" type="submit" id="send">Send message</button>
+        <p id="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -295,6 +296,7 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

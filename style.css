@@ -219,6 +219,10 @@ input:focus,textarea:focus{outline:0;border-color:var(--violet);box-shadow:0 0 0
 textarea{min-height:130px;resize:vertical}
 form .btn{justify-self:start;background:var(--violet);border-color:var(--violet);color:#fff}
 form .btn:hover{box-shadow:4px 4px 0 var(--ink)}
+form .btn:disabled{opacity:.7;cursor:progress;transform:none;box-shadow:none}
+#form-status{font-size:15px;font-weight:600;min-height:1.4em}
+#form-status.ok{color:var(--mint)}
+#form-status.err{color:var(--coral)}
 
 footer{margin-top:90px;padding:44px 0 50px;border-top:1px solid var(--line);background:var(--panel)}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:end}
