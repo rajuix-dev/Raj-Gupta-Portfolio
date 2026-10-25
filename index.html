@@ -3,141 +3,379 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raj Gupta — Full Stack Developer &amp; UI/UX Designer</title>
+<title>Raj Gupta — Full Stack Developer & UI/UX Designer</title>
 <meta name="description" content="Raj Gupta — B.Tech CSE student, full-stack developer and UI/UX designer. Portfolio, projects and contact.">
-
-<!-- EmailJS Library -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Work+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF0F6; --panel:#FFFFFF; --ink:#15161C; --muted:#5A5E70; --line:#D8DCE8;
+  --violet:#6A4DFF; --violet-soft:#E7E2FF; --coral:#FF6A5C; --coral-soft:#FFE3DF;
+  --mint:#14B38A; --mint-soft:#D9F5EC; --sun:#FFC53D; --sun-soft:#FFF0C7;
+  --dot:#C9CDDC; --block:#15161C; --block-ink:#F2F3F8;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'Figtree',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0E0F14; --panel:#171922; --ink:#F2F3F8; --muted:#A1A5B8; --line:#2A2D3B;
+    --violet:#8F7BFF; --violet-soft:#252046; --coral:#FF8A7D; --coral-soft:#3A1F1E;
+    --mint:#3DD6AC; --mint-soft:#143328; --sun:#FFD25E; --sun-soft:#3A3014;
+    --dot:#262938; --block:#171922; --block-ink:#F2F3F8;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;
+  background-image:radial-gradient(var(--dot) 1.2px,transparent 1.2px);background-size:26px 26px;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1160px,100% - 40px);margin-inline:auto}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.08;letter-spacing:-.02em}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:14px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 14px}
+.nav-in{
+  width:min(1020px,100%);display:flex;align-items:center;gap:20px;padding:9px 12px 9px 20px;
+  background:color-mix(in srgb,var(--panel) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:999px;box-shadow:0 8px 30px -12px rgba(20,20,60,.25);
+}
+.brand{font-family:var(--display);font-weight:800;font-size:19px;text-decoration:none;letter-spacing:-.02em;margin-right:auto}
+.links{display:flex;gap:2px;list-style:none}
+.links a{display:block;padding:7px 13px;border-radius:999px;text-decoration:none;font-size:15px;font-weight:500;color:var(--muted);transition:background .2s,color .2s}
+.links a:hover{color:var(--ink);background:var(--bg)}
+.links a.on{color:var(--violet);background:var(--violet-soft)}
+.open{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:var(--mint-soft);color:var(--mint);font-weight:600;font-size:14px;white-space:nowrap}
+.open i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 var(--mint);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.burger{display:none;width:40px;height:40px;border:0;border-radius:50%;background:var(--bg);cursor:pointer;color:var(--ink)}
+.burger svg{width:20px;height:20px;margin:auto}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:600;font-size:16px;text-decoration:none;border:1.5px solid var(--ink);cursor:pointer;font-family:var(--body);transition:transform .18s,box-shadow .18s,background .18s}
+.btn-solid{background:var(--ink);color:var(--bg)}
+.btn-solid:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--violet)}
+.btn-line{background:transparent;color:var(--ink)}
+.btn-line:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--coral)}
+
+/* ---------- hero ---------- */
+.hero{padding:150px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(3.6rem,9vw,7.6rem);font-weight:800;letter-spacing:-.045em;line-height:.92;margin-bottom:28px}
+.hero h1 span{display:block}
+.hero h1 span+span{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.lead{font-size:1.25rem;line-height:1.55;max-width:34em;margin-bottom:16px}
+.sub{color:var(--muted);max-width:34em;margin-bottom:34px}
+.cta{display:flex;flex-wrap:wrap;gap:14px}
+
+.stage{position:relative;height:540px}
+.frame-photo{
+  position:absolute;right:6%;top:0;width:62%;aspect-ratio:4/5;border-radius:18px;background:var(--violet-soft);
+  border:2px solid var(--violet);padding:0;animation:pop .7s .05s both cubic-bezier(.2,1.3,.4,1);
+}
+.frame-photo .ph{position:absolute;inset:0;overflow:hidden;border-radius:16px;background:linear-gradient(150deg,var(--violet),var(--coral))}
+.frame-photo img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
+.frame-photo .fallback{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:5rem;color:#fff;letter-spacing:-.04em}
+.h{position:absolute;width:11px;height:11px;background:var(--panel);border:2px solid var(--violet);border-radius:3px;z-index:3}
+.h.a{top:-7px;left:-7px}.h.b{top:-7px;right:-7px}.h.c{bottom:-7px;left:-7px}.h.d{bottom:-7px;right:-7px}
+.code{
+  position:absolute;left:0;bottom:6%;width:min(380px,82%);background:#16171F;color:#E7E9F5;border-radius:16px;
+  box-shadow:0 30px 60px -24px rgba(20,16,70,.55);z-index:4;animation:pop .7s .25s both cubic-bezier(.2,1.3,.4,1);
+}
+.code-bar{display:flex;gap:7px;padding:13px 16px;border-bottom:1px solid #262838}
+.code-bar b{width:11px;height:11px;border-radius:50%;background:#FF6A5C}
+.code-bar b:nth-child(2){background:#FFC53D}.code-bar b:nth-child(3){background:#2FD3A5}
+.code pre{font-family:var(--mono);font-size:14px;line-height:1.75;padding:16px 20px 20px;overflow:auto}
+.k{color:#B7A6FF}.n{color:#7FD6FF}.s{color:#FFB38A}.c{color:#6FE0B8}
+.cursor{position:absolute;z-index:6;display:flex;align-items:flex-start;gap:0;pointer-events:none}
+.cursor svg{width:22px;height:22px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+.cursor span{margin:16px 0 0 -4px;padding:3px 11px;border-radius:999px;color:#fff;font-size:13px;font-weight:600;font-family:var(--body)}
+.cursor.one{left:46%;top:30%;animation:drift1 7s 1s ease-in-out infinite alternate,pop .6s .6s both}
+.cursor.one span{background:var(--violet)}
+.cursor.two{right:2%;bottom:20%;animation:drift2 8s 1.4s ease-in-out infinite alternate,pop .6s .8s both}
+.cursor.two span{background:var(--coral)}
+.sticker{position:absolute;z-index:5;border-radius:12px;animation:pop .7s .5s both cubic-bezier(.2,1.3,.4,1)}
+.sticker.s1{width:86px;height:86px;right:0;top:46%;background:var(--sun);transform:rotate(8deg);border-radius:50%}
+.sticker.s2{width:62px;height:62px;left:6%;top:10%;background:var(--mint);transform:rotate(-12deg);border-radius:14px}
+@keyframes pop{from{opacity:0;transform:scale(.88) translateY(14px)}}
+@keyframes drift1{to{transform:translate(28px,-34px)}}
+@keyframes drift2{to{transform:translate(-40px,22px)}}
+
+.stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:70px}
+.chip{display:inline-flex;align-items:center;gap:9px;padding:9px 17px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-weight:500;font-size:15px}
+.chip::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--c,var(--violet))}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);margin-top:56px;background:var(--ink);color:var(--bg);border-radius:20px;overflow:hidden}
+.stat{padding:30px 24px;border-right:1px solid color-mix(in srgb,var(--bg) 18%,transparent)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:3.2rem;line-height:1;letter-spacing:-.04em}
+.stat:nth-child(1) b{color:var(--sun)}.stat:nth-child(2) b{color:var(--mint)}.stat:nth-child(3) b{color:var(--coral)}
+.stat:nth-child(4) b{color:#B7A6FF}.stat:nth-child(5) b{color:#7FD6FF}
+.stat span{font-size:14px;opacity:.78}
+
+/* ---------- sections ---------- */
+.sec{padding:110px 0 0}
+.sec-head{margin-bottom:46px}
+.sec-head h2{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800}
+.sec-head h2::after{content:"";display:block;width:64px;height:7px;border-radius:7px;background:var(--violet);margin-top:16px}
+#skills .sec-head h2::after{background:var(--coral)}
+#projects .sec-head h2::after{background:var(--mint)}
+#miniprojects .sec-head h2::after{background:var(--sun)}
+#experience .sec-head h2::after{background:var(--violet)}
+#capabilities .sec-head h2::after{background:var(--coral)}
+#contact .sec-head h2::after{background:var(--sun)}
+
+/* about */
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:start}
+.about h3{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:22px;font-weight:600}
+.about p{margin-bottom:16px;max-width:36em}
+.traits{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:26px;background:var(--panel);border:1px solid var(--line);border-radius:22px;transform:rotate(1.2deg)}
+.traits li{padding:9px 16px;border-radius:12px;font-weight:600;font-size:15px;background:var(--violet-soft);color:var(--violet)}
+.traits li:nth-child(4n+2){background:var(--coral-soft);color:var(--coral);border-radius:999px}
+.traits li:nth-child(4n+3){background:var(--mint-soft);color:var(--mint);border-radius:6px 18px}
+.traits li:nth-child(4n){background:var(--sun-soft);color:#A87400}
+@media (prefers-color-scheme:dark){.traits li:nth-child(4n){color:var(--sun)}}
+
+/* skills */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.skill-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px 28px 14px}
+.skill-card:nth-child(1){border-top:6px solid var(--violet)}
+.skill-card:nth-child(2){border-top:6px solid var(--coral)}
+.skill-card:nth-child(3){border-top:6px solid var(--mint)}
+.skill-card:nth-child(4){border-top:6px solid var(--sun)}
+.skill-card h4{font-size:1.35rem;margin-bottom:12px;font-weight:600}
+.skill-card ul{list-style:none}
+.skill-card li{display:flex;align-items:center;gap:14px;padding:11px 0;border-top:1px dashed var(--line)}
+.skill-card li>span:first-child{font-weight:600;flex:1}
+.lvl{font-size:13.5px;color:var(--muted);width:82px;text-align:right}
+.meter{display:flex;gap:4px}
+.meter i{width:22px;height:8px;border-radius:4px;background:var(--line);transition:background .4s}
+.skill-card.in .meter i.f{background:var(--cc,var(--violet))}
+.skill-card:nth-child(2){--cc:var(--coral)}.skill-card:nth-child(3){--cc:var(--mint)}.skill-card:nth-child(4){--cc:var(--sun)}
+
+/* projects */
+.proj-featured{display:grid;grid-template-columns:1fr 1.05fr;background:var(--ink);color:var(--bg);border-radius:26px;overflow:hidden;margin-bottom:22px}
+.pf-text{padding:44px 44px 44px}
+.tag{display:inline-block;padding:5px 13px;border-radius:999px;background:var(--sun);color:#15161C;font-weight:600;font-size:13.5px;margin-bottom:20px}
+.proj-featured h3{font-size:2.8rem;font-weight:800;margin-bottom:14px}
+.proj-featured p{opacity:.85;margin-bottom:24px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
+.tags li{padding:5px 13px;border-radius:8px;font-size:14px;font-weight:500;background:var(--violet-soft);color:var(--violet);border:1px solid transparent}
+.proj-featured .tags li{background:color-mix(in srgb,var(--bg) 12%,transparent);color:var(--bg)}
+.pf-art{position:relative;min-height:340px;background:linear-gradient(140deg,var(--violet),#FF6AA0 70%,var(--coral));overflow:hidden}
+.browser{position:absolute;inset:36px 0 36px 40px;background:#fff;border-radius:16px 0 0 16px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);padding:0}
+.browser .bar{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid #ECECF3}
+.browser .bar b{width:9px;height:9px;border-radius:50%;background:#D9DCE6}
+.browser .bar em{margin-left:10px;flex:1;height:9px;border-radius:5px;background:#ECECF3;align-self:center}
+.mock{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.mock div{border-radius:10px;background:#F1F2F8;height:96px;position:relative;overflow:hidden}
+.mock div::before{content:"";position:absolute;inset:0 0 34px 0;background:linear-gradient(135deg,#CFC6FF,#FFD0CA)}
+.mock div:nth-child(2)::before{background:linear-gradient(135deg,#BDEFE0,#CFE4FF)}
+.mock div:nth-child(3)::before{background:linear-gradient(135deg,#FFE7A8,#FFC9C2)}
+.mock div::after{content:"";position:absolute;left:10px;bottom:11px;width:52%;height:8px;border-radius:5px;background:#CBCEDD;box-shadow:0 -13px 0 -1px #E0E2EC}
+.pin{position:absolute;right:26px;top:96px;width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--coral);border:3px solid #fff;box-shadow:0 8px 16px rgba(0,0,0,.3)}
+.proj-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.proj{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:34px;transition:transform .25s,box-shadow .25s}
+.proj:hover{transform:translateY(-6px);box-shadow:0 22px 40px -22px rgba(40,30,120,.45)}
+.proj .kicker{display:inline-block;padding:4px 12px;border-radius:999px;font-size:13.5px;font-weight:600;background:var(--mint-soft);color:var(--mint);margin-bottom:18px}
+.proj:nth-child(2) .kicker{background:var(--coral-soft);color:var(--coral)}
+.proj h3{font-size:1.9rem;font-weight:800;margin-bottom:10px}
+.proj p{color:var(--muted);margin-bottom:22px}
+
+/* mini */
+.mini{display:flex;flex-wrap:wrap;gap:12px;list-style:none}
+.mini li{padding:12px 22px;background:var(--panel);border:1.5px solid var(--ink);border-radius:999px;font-weight:600;transition:transform .2s,background .2s,box-shadow .2s;cursor:default}
+.mini li:hover{transform:translateY(-4px) rotate(-2deg);background:var(--sun);color:#15161C;box-shadow:3px 4px 0 var(--ink)}
+.mini li:nth-child(3n+2):hover{background:var(--mint)}
+.mini li:nth-child(3n):hover{background:var(--coral)}
+
+/* journey */
+.timeline{position:relative;list-style:none;margin-left:12px;padding-left:46px;border-left:3px solid var(--line)}
+.tl{position:relative;margin-bottom:26px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:26px 30px}
+.tl::before{content:"";position:absolute;left:-58px;top:30px;width:17px;height:17px;border-radius:50%;background:var(--violet);border:4px solid var(--bg)}
+.tl:nth-child(2)::before{background:var(--coral)}
+.tl:nth-child(3)::before{background:var(--mint)}
+.tl:nth-child(4)::before{background:var(--sun)}
+.tl .when{display:inline-block;font-family:var(--mono);font-size:13.5px;font-weight:500;padding:3px 11px;border-radius:7px;background:var(--violet-soft);color:var(--violet);margin-bottom:10px}
+.tl h3{font-size:1.5rem;margin-bottom:6px;font-weight:600}
+.tl p{color:var(--muted);max-width:42em}
+
+/* capabilities */
+.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cap{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px;position:relative;overflow:hidden}
+.cap::before{content:"";display:block;width:40px;height:40px;margin-bottom:20px;background:var(--violet);border-radius:12px}
+.cap:nth-child(2)::before{background:var(--coral);border-radius:50%}
+.cap:nth-child(3)::before{background:var(--mint);border-radius:4px 20px}
+.cap:nth-child(4)::before{background:var(--sun);border-radius:50% 12px}
+.cap:nth-child(5)::before{background:var(--violet);border-radius:50% 50% 50% 4px}
+.cap:nth-child(6)::before{background:var(--coral);border-radius:12px 4px}
+.cap h4{font-size:1.3rem;margin-bottom:8px;font-weight:600}
+.cap p{color:var(--muted);font-size:16px}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;background:var(--block);color:var(--block-ink);border-radius:30px;overflow:hidden;border:1px solid var(--line)}
+.c-left{padding:54px 48px;background:linear-gradient(160deg,#2B1F7A,#15161C 70%)}
+.c-left h3{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:18px}
+.c-left p{opacity:.85;margin-bottom:28px}
+.mail{display:inline-block;font-family:var(--display);font-weight:600;font-size:1.25rem;color:var(--sun);margin-bottom:30px;word-break:break-all}
+.c-links{display:flex;flex-wrap:wrap;gap:12px}
+.c-links .btn{border-color:var(--block-ink);color:var(--block-ink);padding:11px 20px}
+.c-links .btn.fill{background:var(--block-ink);color:#15161C}
+.c-links .btn:hover{box-shadow:4px 4px 0 var(--coral)}
+form{padding:48px;background:var(--panel);color:var(--ink);display:grid;gap:16px;align-content:center}
+label{display:grid;gap:6px;font-weight:600;font-size:14.5px}
+input,textarea{font:inherit;padding:13px 15px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:0;border-color:var(--violet);box-shadow:0 0 0 4px var(--violet-soft)}
+textarea{min-height:130px;resize:vertical}
+form .btn{justify-self:start;background:var(--violet);border-color:var(--violet);color:#fff}
+form .btn:hover{box-shadow:4px 4px 0 var(--ink)}
+
+footer{margin-top:90px;padding:44px 0 50px;border-top:1px solid var(--line);background:var(--panel)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:end}
+.foot strong{font-family:var(--display);font-size:1.6rem;display:block}
+.foot p{color:var(--muted);font-size:15px}
+
+/* ---------- responsive ---------- */
+@media (max-width:960px){
+  .hero-grid,.about,.proj-featured,.contact{grid-template-columns:1fr}
+  .stage{height:500px;max-width:520px;margin:0 auto;width:100%}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat{border-bottom:1px solid color-mix(in srgb,var(--bg) 18%,transparent)}
+  .caps{grid-template-columns:repeat(2,1fr)}
+  .pf-art{min-height:300px}
+  .traits{transform:none}
+}
+@media (max-width:820px){
+  .burger{display:grid}
+  .open{display:none}
+  .links{position:absolute;top:calc(100% + 10px);left:14px;right:14px;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:10px;display:none;box-shadow:0 20px 40px -18px rgba(20,20,60,.35)}
+  .links.show{display:flex}
+  .nav-in{position:relative}
+  .nav{align-items:flex-start}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .hero{padding-top:120px}
+  .skill-grid,.proj-row,.caps{grid-template-columns:1fr}
+  .pf-text,.c-left,form{padding:30px 24px}
+  .proj-featured h3{font-size:2.2rem}
+  .stage{height:470px}
+  .lvl{width:70px;font-size:12.5px}
+  .meter i{width:16px}
+  .sec{padding-top:80px}
+  .timeline{padding-left:34px}
+  .tl::before{left:-46px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
-<body>
+<body id="top">
 
-<!-- ══════════════════════════════
-     MASTHEAD
-══════════════════════════════ -->
-<header class="masthead" id="navbar">
-  <a href="#top" class="masthead-mark">Raj Gupta</a>
-
-  <nav class="masthead-nav">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Work</a>
-    <a href="#miniprojects">Mini Projects</a>
-    <a href="#experience">Journey</a>
-    <a href="#contact">Contact</a>
+<header class="nav">
+  <nav class="nav-in" aria-label="Main">
+    <a class="brand" href="#top">Raj Gupta</a>
+    <ul class="links" id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Work</a></li>
+      <li><a href="#miniprojects">Mini Projects</a></li>
+      <li><a href="#experience">Journey</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <span class="open"><i></i>Open to work</span>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </nav>
-
-  <div class="masthead-status">
-    <span class="status-dot"></span>Open to work
-  </div>
-
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </header>
 
-<!-- ── MOBILE MENU ── -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#skills" onclick="closeMobile()">Skills</a>
-  <a href="#projects" onclick="closeMobile()">Work</a>
-  <a href="#miniprojects" onclick="closeMobile()">Mini Projects</a>
-  <a href="#experience" onclick="closeMobile()">Journey</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
-</div>
-
-<main id="top">
-
-<!-- ══════════════════════════════
-     HERO
-══════════════════════════════ -->
+<main>
+<!-- HERO -->
 <section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-main">
-      <h1 class="hero-name">Raj Gupta</h1>
-      <p class="hero-role">A full-stack developer and UI/UX designer studying Computer Science, building responsive, user-focused web applications from interface to database.</p>
-      <p class="hero-desc">Currently a B.Tech Computer Science Engineering student, working across React, Node.js and MongoDB, with a parallel interest in clean, usable interface design.</p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-ink">See the work</a>
-        <a href="#contact" class="btn-line">Get in touch</a>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1><span>Raj</span><span>Gupta</span></h1>
+        <p class="lead">A full-stack developer and UI/UX designer studying Computer Science, building responsive, user-focused web applications from interface to database.</p>
+        <p class="sub">Currently a B.Tech Computer Science Engineering student, working across React, Node.js and MongoDB, with a parallel interest in clean, usable interface design.</p>
+        <div class="cta">
+          <a class="btn btn-solid" href="#projects">See the work</a>
+          <a class="btn btn-line" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="stage" aria-hidden="false">
+        <div class="sticker s2" aria-hidden="true"></div>
+        <div class="frame-photo">
+          <span class="h a"></span><span class="h b"></span><span class="h c"></span><span class="h d"></span>
+          <div class="ph">
+            <div class="fallback" aria-hidden="true">RG</div>
+            <img src="https://raj-gupta-portfolio-rho.vercel.app/raj.jpeg" alt="Portrait of Raj Gupta" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="code">
+          <div class="code-bar" aria-hidden="true"><b></b><b></b><b></b></div>
+<pre><span class="k">const</span> <span class="n">developer</span> = {
+  name: <span class="s">"Raj Gupta"</span>,
+  degree: <span class="s">"B.Tech CSE"</span>,
+  stack: <span class="s">"Full Stack"</span>,
+  focus: [<span class="s">"Web"</span>, <span class="s">"UI/UX"</span>],
+  learning: <span class="c">true</span>
+};</pre>
+        </div>
+        <div class="cursor one" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 2l17 8-7.5 2L9.5 20z" fill="#6A4DFF" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Raj Gupta</span>
+        </div>
+        <div class="cursor two" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 2l17 8-7.5 2L9.5 20z" fill="#FF6A5C" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><span>UI/UX</span>
+        </div>
+        <div class="sticker s1" aria-hidden="true"></div>
       </div>
     </div>
 
-    <aside class="hero-aside">
-      <div class="code-window">
-        <div class="code-window-bar">
-          <span></span><span></span><span></span>
-        </div>
-        <div class="code-window-body">
-          <div class="code-line"><span class="ck">const</span> <span class="cv">developer</span> = {</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">name</span>: <span class="cs">"Raj Gupta"</span>,</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">degree</span>: <span class="cs">"B.Tech CSE"</span>,</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">stack</span>: <span class="cs">"Full Stack"</span>,</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">focus</span>: [<span class="cs">"Web"</span>, <span class="cs">"UI/UX"</span>],</div>
-          <div class="code-line">&nbsp;&nbsp;<span class="cf">learning</span>: <span class="cn">true</span></div>
-          <div class="code-line">};</div>
-        </div>
-      </div>
+    <ul class="stack" style="list-style:none">
+      <li class="chip" style="--c:#61DAFB">React.js</li>
+      <li class="chip" style="--c:#3C873A">Node.js</li>
+      <li class="chip" style="--c:#15161C">Express.js</li>
+      <li class="chip" style="--c:#14B38A">MongoDB</li>
+      <li class="chip" style="--c:#00758F">MySQL</li>
+      <li class="chip" style="--c:#FFC53D">JavaScript</li>
+      <li class="chip" style="--c:#38BDF8">Tailwind CSS</li>
+      <li class="chip" style="--c:#FF6A5C">Figma</li>
+    </ul>
 
-      <ul class="hero-stack">
-        <li>React.js</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li>
-        <li>MySQL</li><li>JavaScript</li><li>Tailwind CSS</li><li>Figma</li>
-      </ul>
-    </aside>
+    <div class="stats">
+      <div class="stat"><b data-n="3">3</b><span>Major projects</span></div>
+      <div class="stat"><b data-n="13">13</b><span>Mini projects</span></div>
+      <div class="stat"><b data-n="4">4</b><span>Languages</span></div>
+      <div class="stat"><b data-n="5">5</b><span>Frontend skills</span></div>
+      <div class="stat"><b data-n="3">3</b><span>Backend skills</span></div>
+    </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     STAT STRIP
-══════════════════════════════ -->
-<div class="stat-strip">
-  <div class="container stat-strip-inner">
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Major projects</span></div>
-    <div class="stat"><span class="stat-num">13</span><span class="stat-label">Mini projects</span></div>
-    <div class="stat"><span class="stat-num">4</span><span class="stat-label">Languages</span></div>
-    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Frontend skills</span></div>
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">Backend skills</span></div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════
-     ABOUT
-══════════════════════════════ -->
-<section id="about">
-  <div class="container about-grid">
-
-    <div class="about-photo">
-      <div class="photo-frame">
-        <img src="raj.jpeg" alt="Portrait of Raj Gupta">
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="sec-head"><h2>About</h2></div>
+    <div class="about">
+      <div>
+        <h3>Full-stack developer &amp; UI/UX designer</h3>
+        <p>I'm a B.Tech Computer Science Engineering student (2024–2028) with hands-on experience in full-stack web development and UI/UX design. I enjoy building responsive, user-focused applications with modern frontend and backend technologies.</p>
+        <p>My experience spans React.js, Node.js, Express.js and MongoDB, along with REST APIs, authentication, database integration, responsive design and UI/UX workflows in Figma.</p>
+        <p>I care about practical solutions — clean interfaces, strong usability and reliable backend integration, rather than complexity for its own sake.</p>
       </div>
-    </div>
-
-    <div class="about-text">
-      <div class="section-head">
-        <h2>About</h2>
-        <div class="rule"></div>
-      </div>
-
-      <h3>Full-stack developer &amp; UI/UX designer</h3>
-      <p>
-        I'm a B.Tech Computer Science Engineering student (2024–2028) with hands-on experience
-        in full-stack web development and UI/UX design. I enjoy building responsive, user-focused
-        applications with modern frontend and backend technologies.
-      </p>
-      <p>
-        My experience spans React.js, Node.js, Express.js and MongoDB, along with REST APIs,
-        authentication, database integration, responsive design and UI/UX workflows in Figma.
-      </p>
-      <p>
-        I care about practical solutions — clean interfaces, strong usability and reliable
-        backend integration, rather than complexity for its own sake.
-      </p>
-
-      <ul class="qualities">
+      <ul class="traits">
         <li>Problem solving</li>
         <li>Attention to detail</li>
         <li>Team collaboration</li>
@@ -146,276 +384,237 @@
         <li>Communication</li>
       </ul>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     SKILLS
-══════════════════════════════ -->
-<section id="skills" class="section-tinted">
-  <div class="container">
-    <div class="section-head">
-      <h2>Skills</h2>
-      <div class="rule"></div>
-    </div>
-
-    <div class="skills-columns">
-
-      <div class="skill-group">
+<!-- SKILLS -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head"><h2>Skills</h2></div>
+    <div class="skill-grid">
+      <div class="skill-card">
         <h4>Languages</h4>
-        <ul class="skill-list">
-          <li><span>C</span><span class="tier">Proficient</span></li>
-          <li><span>C++</span><span class="tier">Proficient</span></li>
-          <li><span>Python</span><span class="tier">Proficient</span></li>
-          <li><span>JavaScript</span><span class="tier">Advanced</span></li>
+        <ul>
+          <li><span>C</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>C++</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Python</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>JavaScript</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
         </ul>
       </div>
-
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Frontend</h4>
-        <ul class="skill-list">
-          <li><span>HTML5</span><span class="tier">Advanced</span></li>
-          <li><span>CSS3</span><span class="tier">Advanced</span></li>
-          <li><span>React.js</span><span class="tier">Advanced</span></li>
-          <li><span>Bootstrap</span><span class="tier">Proficient</span></li>
-          <li><span>Tailwind CSS</span><span class="tier">Proficient</span></li>
+        <ul>
+          <li><span>HTML5</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>CSS3</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>React.js</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>Bootstrap</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Tailwind CSS</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
         </ul>
       </div>
-
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Backend &amp; data</h4>
-        <ul class="skill-list">
-          <li><span>Node.js</span><span class="tier">Proficient</span></li>
-          <li><span>Express.js</span><span class="tier">Proficient</span></li>
-          <li><span>MongoDB</span><span class="tier">Proficient</span></li>
-          <li><span>MySQL</span><span class="tier">Familiar</span></li>
+        <ul>
+          <li><span>Node.js</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Express.js</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>MongoDB</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>MySQL</span><span class="lvl">Familiar</span><span class="meter" data-l="2"></span></li>
         </ul>
       </div>
-
-      <div class="skill-group">
+      <div class="skill-card">
         <h4>Tools</h4>
-        <ul class="skill-list">
-          <li><span>Git &amp; GitHub</span><span class="tier">Proficient</span></li>
-          <li><span>Postman</span><span class="tier">Proficient</span></li>
-          <li><span>Figma</span><span class="tier">Advanced</span></li>
-          <li><span>Canva</span><span class="tier">Proficient</span></li>
+        <ul>
+          <li><span>Git &amp; GitHub</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Postman</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
+          <li><span>Figma</span><span class="lvl">Advanced</span><span class="meter" data-l="4"></span></li>
+          <li><span>Canva</span><span class="lvl">Proficient</span><span class="meter" data-l="3"></span></li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     PROJECTS / WORK
-══════════════════════════════ -->
-<section id="projects">
-  <div class="container">
-    <div class="section-head">
-      <h2>Major projects</h2>
-      <div class="rule"></div>
-    </div>
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="wrap">
+    <div class="sec-head"><h2>Major projects</h2></div>
 
-    <div class="project-list">
-
-      <article class="project-row featured">
-        <div class="project-meta">Featured · Full-stack application</div>
-        <div class="project-body">
-          <h3>Wanderlust</h3>
-          <p>A full-stack web application with authentication, property listings, and reviews and ratings, plus search, filtering and maps.</p>
-          <ul class="tag-list">
-            <li>React.js</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li><li>Authentication</li><li>Maps</li>
-          </ul>
+    <article class="proj-featured">
+      <div class="pf-text">
+        <span class="tag">Featured · Full-stack application</span>
+        <h3>Wanderlust</h3>
+        <p>A full-stack web application with authentication, property listings, and reviews and ratings, plus search, filtering and maps.</p>
+        <ul class="tags">
+          <li>React.js</li><li>Node.js</li><li>Express.js</li><li>MongoDB</li><li>Authentication</li><li>Maps</li>
+        </ul>
+      </div>
+      <div class="pf-art" aria-hidden="true">
+        <div class="browser">
+          <div class="bar"><b></b><b></b><b></b><em></em></div>
+          <div class="mock"><div></div><div></div><div></div><div></div></div>
+          <span class="pin"></span>
         </div>
+      </div>
+    </article>
+
+    <div class="proj-row">
+      <article class="proj">
+        <span class="kicker">Personal project</span>
+        <h3>Personal portfolio website</h3>
+        <p>A responsive portfolio site designed and developed from scratch to present projects, skills and professional background.</p>
+        <ul class="tags"><li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Figma</li></ul>
       </article>
-
-      <article class="project-row">
-        <div class="project-meta">Personal project</div>
-        <div class="project-body">
-          <h3>Personal portfolio website</h3>
-          <p>A responsive portfolio site designed and developed from scratch to present projects, skills and professional background.</p>
-          <ul class="tag-list">
-            <li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>Figma</li>
-          </ul>
-        </div>
+      <article class="proj">
+        <span class="kicker">E-commerce practice project</span>
+        <h3>Amazon Clone</h3>
+        <p>A frontend e-commerce web application inspired by Amazon, featuring product listings, search, navigation, and a responsive shopping interface.</p>
+        <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li></ul>
       </article>
-
-      <article class="project-row">
-        <div class="project-meta">E-commerce practice project</div>
-        <div class="project-body">
-          <h3>Amazon Clone</h3>
-          <p>A frontend e-commerce web application inspired by Amazon, featuring product listings, search, navigation, and a responsive shopping interface.</p>
-          <ul class="tag-list">
-            <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li>
-          </ul>
-        </div>
-      </article>
-
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     MINI PROJECTS
-══════════════════════════════ -->
-<section id="miniprojects" class="section-tinted">
-  <div class="container">
-    <div class="section-head">
-      <h2>Mini projects</h2>
-      <div class="rule"></div>
-    </div>
+<!-- MINI PROJECTS -->
+<section class="sec" id="miniprojects">
+  <div class="wrap">
+    <div class="sec-head"><h2>Mini projects</h2></div>
+    <ul class="mini">
+      <li>Rock Paper Scissors</li><li>Currency Converter</li><li>Cat Facts Generator</li><li>Todo App</li>
+      <li>Weather App</li><li>Quiz App</li><li>Password Generator</li><li>Digital Clock</li>
+      <li>Stopwatch</li><li>Image Slider</li><li>Expense Tracker</li><li>Calculator</li><li>GitHub Profile Finder</li>
+    </ul>
+  </div>
+</section>
 
-    <div class="miniproj-grid">
-      <div class="miniproj">Rock Paper Scissors</div>
-      <div class="miniproj">Currency Converter</div>
-      <div class="miniproj">Cat Facts Generator</div>
-      <div class="miniproj">Todo App</div>
-      <div class="miniproj">Weather App</div>
-      <div class="miniproj">Quiz App</div>
-      <div class="miniproj">Password Generator</div>
-      <div class="miniproj">Digital Clock</div>
-      <div class="miniproj">Stopwatch</div>
-      <div class="miniproj">Image Slider</div>
-      <div class="miniproj">Expense Tracker</div>
-      <div class="miniproj">Calculator</div>
-      <div class="miniproj">GitHub Profile Finder</div>
+<!-- JOURNEY -->
+<section class="sec" id="experience">
+  <div class="wrap">
+    <div class="sec-head"><h2>Journey</h2></div>
+    <ol class="timeline">
+      <li class="tl">
+        <span class="when">2024–2028</span>
+        <h3>B.Tech, Computer Science Engineering</h3>
+        <p>Pursuing a Bachelor of Technology in Computer Science Engineering at Ganga Institute of Technology and Management, Jhajjar.</p>
+      </li>
+      <li class="tl">
+        <span class="when">Design</span>
+        <h3>UI/UX design in Figma</h3>
+        <p>Designed responsive interfaces with a focus on usability, clean layouts and user-centered design.</p>
+      </li>
+      <li class="tl">
+        <span class="when">Project</span>
+        <h3>Wanderlust</h3>
+        <p>Built a full-stack application with authentication, listings, reviews and ratings, plus search, filtering and maps.</p>
+      </li>
+      <li class="tl">
+        <span class="when">Now</span>
+        <h3>Full-stack web development</h3>
+        <p>Building responsive, user-focused applications with React.js, Node.js and MongoDB — including REST APIs, authentication and database integration.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="sec" id="capabilities">
+  <div class="wrap">
+    <div class="sec-head"><h2>Capabilities</h2></div>
+    <div class="caps">
+      <div class="cap"><h4>Full-stack development</h4><p>Hands-on experience building responsive, user-focused full-stack applications.</p></div>
+      <div class="cap"><h4>API integration</h4><p>Experience with REST APIs, authentication and backend integration.</p></div>
+      <div class="cap"><h4>Database design</h4><p>Working experience with MongoDB and MySQL for application data.</p></div>
+      <div class="cap"><h4>Interface design</h4><p>A strong eye for responsive layouts, usability and clean interfaces.</p></div>
+      <div class="cap"><h4>Version control</h4><p>Git and GitHub, supporting modern collaborative development workflows.</p></div>
+      <div class="cap"><h4>Problem solving</h4><p>Practical solutions, built with creativity, adaptability and continuous learning.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════
-     JOURNEY
-══════════════════════════════ -->
-<section id="experience">
-  <div class="container">
-    <div class="section-head">
-      <h2>Journey</h2>
-      <div class="rule"></div>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-row">
-        <div class="timeline-when">2024–2028</div>
-        <div class="timeline-what">
-          <h3>B.Tech, Computer Science Engineering</h3>
-          <p>Pursuing a Bachelor of Technology in Computer Science Engineering at Ganga Institute of Technology and Management, Jhajjar.</p>
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head"><h2>Contact</h2></div>
+    <div class="contact">
+      <div class="c-left">
+        <h3>Have a project in mind?</h3>
+        <p>I'm open to opportunities, collaborations and projects in full-stack development, frontend engineering and UI/UX design. Send a note — I read every one.</p>
+        <a class="mail" href="mailto:raj.uixwebdev@gmail.com">raj.uixwebdev@gmail.com</a>
+        <div class="c-links">
+          <a class="btn" href="https://www.linkedin.com/in/raj-gupta-40a896348/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn fill" href="https://raj-gupta-portfolio-rho.vercel.app/Raj_Gupta_Resume.docx">Download resume</a>
         </div>
       </div>
-
-      <div class="timeline-row">
-        <div class="timeline-when">Design</div>
-        <div class="timeline-what">
-          <h3>UI/UX design in Figma</h3>
-          <p>Designed responsive interfaces with a focus on usability, clean layouts and user-centered design.</p>
-        </div>
-      </div>
-
-      <div class="timeline-row">
-        <div class="timeline-when">Project</div>
-        <div class="timeline-what">
-          <h3>Wanderlust</h3>
-          <p>Built a full-stack application with authentication, listings, reviews and ratings, plus search, filtering and maps.</p>
-        </div>
-      </div>
-
-      <div class="timeline-row">
-        <div class="timeline-when">Now</div>
-        <div class="timeline-what">
-          <h3>Full-stack web development</h3>
-          <p>Building responsive, user-focused applications with React.js, Node.js and MongoDB — including REST APIs, authentication and database integration.</p>
-        </div>
-      </div>
-
+      <form id="form">
+        <label>Your name<input name="name" type="text" required autocomplete="name"></label>
+        <label>Email address<input name="email" type="email" required autocomplete="email"></label>
+        <label>Subject<input name="subject" type="text" required></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <button class="btn" type="submit" id="send">Send message</button>
+      </form>
     </div>
   </div>
 </section>
-
-<!-- ══════════════════════════════
-     CAPABILITIES
-══════════════════════════════ -->
-<section id="achievements" class="section-tinted">
-  <div class="container">
-    <div class="section-head">
-      <h2>Capabilities</h2>
-      <div class="rule"></div>
-    </div>
-
-    <div class="capability-grid">
-      <div class="capability"><h4>Full-stack development</h4><p>Hands-on experience building responsive, user-focused full-stack applications.</p></div>
-      <div class="capability"><h4>API integration</h4><p>Experience with REST APIs, authentication and backend integration.</p></div>
-      <div class="capability"><h4>Database design</h4><p>Working experience with MongoDB and MySQL for application data.</p></div>
-      <div class="capability"><h4>Interface design</h4><p>A strong eye for responsive layouts, usability and clean interfaces.</p></div>
-      <div class="capability"><h4>Version control</h4><p>Git and GitHub, supporting modern collaborative development workflows.</p></div>
-      <div class="capability"><h4>Problem solving</h4><p>Practical solutions, built with creativity, adaptability and continuous learning.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════
-     CONTACT
-══════════════════════════════ -->
-<section id="contact">
-  <div class="container contact-grid">
-
-    <div class="contact-info">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <div class="rule"></div>
-      </div>
-      <h3>Have a project in mind?</h3>
-      <p>I'm open to opportunities, collaborations and projects in full-stack development, frontend engineering and UI/UX design. Send a note — I read every one.</p>
-      <a href="mailto:raj.uixwebdev@gmail.com" class="contact-email">raj.uixwebdev@gmail.com</a>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/raj-gupta-40a896348/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="./Raj_Gupta_Resume.docx" id="resumeBtn2" download>Download resume</a>
-      </div>
-    </div>
-
-    <form id="contactForm" class="contact-form" onsubmit="return false;">
-      <div class="form-group">
-        <label for="fromName">Your name</label>
-        <input type="text" name="from_name" id="fromName" placeholder="John Doe" required>
-      </div>
-      <div class="form-group">
-        <label for="fromEmail">Email address</label>
-        <input type="email" name="from_email" id="fromEmail" placeholder="john@example.com" required>
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" id="subject" placeholder="Project collaboration">
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" placeholder="Tell me about your project..." required></textarea>
-      </div>
-      <button type="submit" id="submitBtn" class="btn-ink btn-full">
-        <span id="btnText">Send message</span>
-        <span id="btnLoader" style="display:none;">Sending…</span>
-      </button>
-      <div id="formStatus" class="form-status"></div>
-    </form>
-
-  </div>
-</section>
-
 </main>
 
-<!-- ══════════════════════════════
-     FOOTER
-══════════════════════════════ -->
-<footer class="footer">
-  <div class="container footer-inner">
+<footer>
+  <div class="wrap foot">
     <div>
-      <div class="footer-name">Raj Gupta</div>
-      <div class="footer-sub">B.Tech CSE (2024–2028) · Full-stack developer · UI/UX designer</div>
+      <strong>Raj Gupta</strong>
+      <p>B.Tech CSE (2024–2028) · Full-stack developer · UI/UX designer</p>
     </div>
-    <div class="footer-right">Designed &amp; built by Raj Gupta · 2026</div>
+    <p>Designed &amp; built by Raj Gupta · 2026</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+(function(){
+  // mobile menu
+  var burger=document.getElementById('burger'), links=document.getElementById('links');
+  burger.addEventListener('click',function(){
+    var s=links.classList.toggle('show'); burger.setAttribute('aria-expanded',s);
+  });
+  links.addEventListener('click',function(e){ if(e.target.tagName==='A'){links.classList.remove('show');burger.setAttribute('aria-expanded','false');} });
+
+  // skill meters (4 segments)
+  document.querySelectorAll('.meter').forEach(function(m){
+    var l=+m.dataset.l;
+    for(var i=0;i<4;i++){var b=document.createElement('i'); if(i<l) b.className='f'; m.appendChild(b);}
+  });
+  var cards=document.querySelectorAll('.skill-card');
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('in');cio.unobserve(e.target);} });},{threshold:.35});
+  cards.forEach(function(c){cio.observe(c);});
+
+  // counters
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var sio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting) return; sio.unobserve(e.target);
+    var el=e.target, to=+el.dataset.n; if(reduce){el.textContent=to;return;}
+    var t0=performance.now();
+    (function step(t){var p=Math.min((t-t0)/900,1); el.textContent=Math.round(to*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step);})(t0);
+  });},{threshold:.6});
+  document.querySelectorAll('.stat b').forEach(function(b){sio.observe(b);});
+
+  // active nav link
+  var map={};
+  links.querySelectorAll('a').forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var nio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting && map[e.target.id]){
+      Object.keys(map).forEach(function(k){map[k].classList.remove('on');});
+      map[e.target.id].classList.add('on');
+    }
+  });},{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(function(k){var s=document.getElementById(k); if(s) nio.observe(s);});
+
+  // contact form: opens the visitor's mail app with the message filled in
+  var form=document.getElementById('form'), send=document.getElementById('send');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=new FormData(form);
+    var body='Name: '+d.get('name')+'\nEmail: '+d.get('email')+'\n\n'+d.get('message');
+    send.textContent='Sending…';
+    window.location.href='mailto:raj.uixwebdev@gmail.com?subject='+encodeURIComponent(d.get('subject'))+'&body='+encodeURIComponent(body);
+    setTimeout(function(){send.textContent='Send message';},2200);
+  });
+})();
+</script>
 </body>
 </html>
